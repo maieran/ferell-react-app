@@ -52,6 +52,7 @@ const Nav = styled.nav`
 `;
 
 const NavItem = styled.a`
+  position: relative;
   text-decoration: none;
   color: #fff;
   font-weight: 700;
@@ -72,7 +73,7 @@ const NavItem = styled.a`
     height: 3px;
     background: #fff;
     transform: translateX(-50%);
-    transition: width 0.5s ease;
+    transition: width 0.3s ease;
   }
 
   &:hover:after {
@@ -154,17 +155,14 @@ const Header = () => {
 
   return (
     <>
-      {/* Overlay für dunklen Hintergrund */}
       <Overlay isOpen={menuOpen} onClick={toggleMenu} />
 
       <HeaderContainer>
-        {/* Hamburger-Button links */}
+        
         <Hamburger onClick={toggleMenu}>{menuOpen ? "✖" : "☰"}</Hamburger>
 
-        {/* Logo zentriert */}
         <Logo href="/">FERELL</Logo>
-
-        {/* Navigation rechts */}
+  
         <Nav>
           <NavItem href="#home">Home</NavItem>
           <NavItem href="#product">Products</NavItem>
