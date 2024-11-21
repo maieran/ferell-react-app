@@ -20,6 +20,7 @@ const HeroImage = styled.img`
   max-width: 500px; /* Passe die Breite des Hero-Images an */
   height: auto;
   z-index: 2; /* Damit das Bild über dem Hintergrund ist */
+  position: relative;
 `;
 
 const OverlayText = styled.div`
@@ -36,7 +37,7 @@ const OverlayText = styled.div`
 
 const Hero = () => {
   return (
-    <HeroSection>
+    <HeroSection id="hero-section">
       <OverlayText>
         Welcome to <span style={{ color: "#f90" }}>Ferall Energy</span>
       </OverlayText>
