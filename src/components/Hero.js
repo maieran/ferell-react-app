@@ -48,9 +48,9 @@ const OverlayText = styled.div`
   font-weight: bold;
 `;
 
-const SmallTextContainer = styled.div`
+const SmallTextContainerLeft = styled.div`
   position: absolute;
-  left: 10%;
+  left: 5%;
   bottom: 15%;
   display: flex;
   flex-direction: column;
@@ -58,15 +58,14 @@ const SmallTextContainer = styled.div`
   color: #fff;
   text-transform: uppercase;
   font-size: 1rem;
-  font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
   cursor: pointer;
   z-index: 4;
 `;
 
 const ProgressBar = styled.div`
-  width: 100%;
-  height: 5px;
+  width: 250%;
+  height: 2px;
   background-color: #777;
   margin-top: 5px;
   overflow: hidden;
@@ -98,8 +97,17 @@ const TopText = styled.h1`
   text-transform: uppercase;
 `;
 
+
+const SubText = styled.p`
+  font-size: 1rem;
+  color: #fff;
+  margin: 30px 0;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+`;
+
+
 const DiscoverButton = styled.button`
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
@@ -146,6 +154,15 @@ const Hero = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.play();
+      setIsPlaying(true);
+    }
+  }, []);
+
+  //Dead Code,  but might helpfu when user interrupts by click the text element on bot side
   const handlePlay = () => {
     const video = videoRef.current;
 
@@ -163,12 +180,15 @@ const Hero = () => {
         src={videoSource}
         isPlaying={isPlaying}
         muted
+        autoPlay
+        loop
       />
 
       {/* Überschrift und Button */}
       <TopTextContainer>
         <TopText>Boosts your creativity</TopText>
-        <DiscoverButton onClick={handlePlay}>Discover</DiscoverButton>
+        <SubText>Kicks better than Whiskey and Cigarettes</SubText>
+        <DiscoverButton onClick={() => videoRef.current.play()}>Discover</DiscoverButton>
       </TopTextContainer>
 
       {/* Overlay-Text */}
@@ -179,13 +199,13 @@ const Hero = () => {
       )}
 
       {/* Hero-Bild */}
-      {!isPlaying && <HeroImage src={heroImage} alt="Ferall Hero" />}
+      {!isPlaying && <HeroImage src={heroImage} alt="Ferall Hero" />} 
 
       {/* Linker Text mit Ladebalken */}
-      <SmallTextContainer onClick={handlePlay}>
+      <SmallTextContainerLeft onClick={() => videoRef.current.play()}>
         Boosts your creativity
         <ProgressBar progress={progress} />
-      </SmallTextContainer>
+      </SmallTextContainerLeft>
     </HeroSection>
   );
 };
